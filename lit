@@ -1,0 +1,6 @@
+#!/bin/sh
+
+path="$HOME/doc/lit"
+book=$(find $path -type f | cut -d '/' -f '6-' | dmenu -i -c -bw 3 -l 10 -p "Open book:")
+
+[ -f "$path/$book" ] && zathura "$path/$book"

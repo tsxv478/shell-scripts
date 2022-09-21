@@ -1,6 +1,6 @@
 #!/bin/sh
 
-emoji=$(cut -d ';' -f1 ~/.local/share/emoji | dmenu -i -c -bw 3 -l 10 -p "Emoji:" | sed "s/ .*//" | tr -d '\n')
+emoji=$(cut -d ';' -f1 ~/.local/share/emoji | dmenu -i -c -bw 3 -l 15 -p "Emoji:" | sed "s/ .*//" | tr -d '\n')
 
 [ -z "$emoji" ] && exit
 

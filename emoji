@@ -1,0 +1,8 @@
+#!/bin/sh
+
+emoji=$(cut -d ';' -f1 ~/.local/share/emoji | dmenu -i -c -bw 3 -l 10 -p "Emoji:" | sed "s/ .*//" | tr -d '\n')
+
+[ -z "$emoji" ] && exit
+
+printf "$emoji" | xclip -selection clipboard
+notify-send "'$emoji' copied to clipboard"

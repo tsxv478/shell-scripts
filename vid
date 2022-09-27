@@ -1,6 +1,6 @@
 #!/bin/sh
 
 path="$HOME/vid"
-video=$(find $path -type f | cut -d '/' -f '5-' | dmenu -i -c -bw 3 -l 15 -p "Play video:")
+video=$(find $path -type f | cut -d '/' -f '5-' | dmenu -i -c -l 15 -p "Play video:")
 
 [ -f "$path/$video" ] && mpv --really-quiet "$path/$video"

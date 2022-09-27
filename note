@@ -41,7 +41,7 @@ open_pager() {
 }
 
 dmenu_note() {
-	note="$(echo "\c" | dmenu -c -bw 3 -p 'Note:')"
+	note="$(echo "\c" | dmenu -c -p 'Note:')"
 	printf "[$(date +'%d/%m/%Y, %H:%M')] %s\n\n" "$note" >> $notesdir/notes.txt
 }
 

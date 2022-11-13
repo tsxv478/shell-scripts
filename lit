@@ -1,6 +1,6 @@
 #!/bin/sh
 
-path="$HOME/doc/lit"
-book=$(find $path -type f | cut -d '/' -f '6-' | dmenu -i -c -l 15 -p "Open book:")
+dir="$HOME/doc/lit"
+book=$(find $dir -type f | cut -d '/' -f '6-' | dmenu -i -c -l 15 -p "Open book:")
 
-[ -f "$path/$book" ] && zathura "$path/$book"
+[ -f "$dir/$book" ] && zathura "$dir/$book"

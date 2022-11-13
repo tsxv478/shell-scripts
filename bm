@@ -1,13 +1,13 @@
 #!/bin/sh
 
-path="$HOME/.local/share/bookmarks.txt"
-bookmark=$(cat $path | dmenu -i -c -l 15 -p "Bookmark:")
+dir="$HOME/.local/share/bookmarks.txt"
+bookmark=$(tac $dir | dmenu -i -c -l 15 -p "Bookmark:")
 
 [ -z $bookmark ] && exit
 # append a url to the list if it's not present and exit
-[ -z $(grep -F $bookmark $path) ] && printf "%s\n" "$bookmark" >> $path && exit
+[ -z $(grep -F $bookmark $dir) ] && printf "%s\n" "$bookmark" >> $dir && exit
 
-action=$(printf "Open in browser\nCopy to clipboard\n" | dmenu -i -c -l 2 -p "Action:")
+action=$(printf "Open in browser\nCopy to clipboard" | dmenu -i -c -l 2 -p "Action:")
 
 case $action in
 	"Open in browser") $BROWSER $bookmark ;;

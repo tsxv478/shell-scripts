@@ -11,6 +11,7 @@ action=$(printf "Open in browser\nCopy to clipboard" | dmenu -i -c -l 2 -p "Acti
 
 case $action in
 	"Open in browser") $BROWSER $bookmark ;;
-	"Copy to clipboard") printf "%s" "$bookmark" | xclip -selection clipboard ;;
+	"Copy to clipboard") printf "%s" "$bookmark" | xclip -selection clipboard &&
+		notify-send "URL copied to clipboard" ;;
 	*) exit ;;
 esac

@@ -1,0 +1,16 @@
+#!/bin/sh
+
+case "$(readlink -f /sbin/init)" in
+	*systemd*) ctl='systemctl' ;;
+	*) ctl='loginctl' ;;
+esac
+
+action="$(printf "Lock\nSleep\nReboot\nShutdown" | dmenu -i -c -l 4 -p 'Action:')"
+
+case "$action" in
+	"Lock") xset dpms force off && slock ;;
+	"Sleep") slock $ctl suspend -i ;;
+	"Reboot") $ctl reboot -i ;;
+	"Shutdown") $ctl poweroff -i ;;
+	*) exit ;;
+esac

@@ -5,9 +5,10 @@ case "$(readlink -f /sbin/init)" in
 	*) ctl='loginctl' ;;
 esac
 
-action="$(printf "Lock\nSleep\nReboot\nShutdown" | dmenu -i -c -l 4 -p 'Action:')"
+action="$(printf "Screen off\nLock\nSleep\nReboot\nShutdown" | dmenu -i -c -l 5 -p 'Action:')"
 
 case "$action" in
+	"Screen off") xset dpms force off ;;
 	"Lock") xset dpms force off && slock ;;
 	"Sleep") slock $ctl suspend -i ;;
 	"Reboot") $ctl reboot -i ;;

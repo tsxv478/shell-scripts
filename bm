@@ -1,17 +1,17 @@
 #!/bin/sh
 
-dir="$HOME/.local/share/bookmarks.txt"
-bookmark=$(tac $dir | dmenu -i -c -l 15 -p "Bookmark:")
+bmfile="$HOME/.local/share/bookmarks.txt"
+url=$(tac "$bmfile" | dmenu -i -c -l 15 -p "URL:")
 
-[ -z $bookmark ] && exit
+[ -z "$url" ] && exit
 # append a url to the list if it's not present and exit
-[ -z $(grep -F $bookmark $dir) ] && printf "%s\n" "$bookmark" >> $dir && exit
+grep -Fq "$url" "$bmfile" || { printf "%s\n" "$url" >> "$bmfile" ; exit ; }
 
 action=$(printf "Open in browser\nCopy to clipboard" | dmenu -i -c -l 2 -p "Action:")
 
-case $action in
-	"Open in browser") $BROWSER $bookmark ;;
-	"Copy to clipboard") printf "%s" "$bookmark" | xclip -selection clipboard &&
+case "$action" in
+	"Open in browser") $BROWSER "$url" ;;
+	"Copy to clipboard") printf "%s" "$url" | xclip -selection clipboard &&
 		notify-send "URL copied to clipboard" ;;
 	*) exit ;;
 esac

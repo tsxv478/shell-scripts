@@ -3,11 +3,11 @@
 output="$(date '+%y%m%d%H%M%S').png"
 xclip_cmd="xclip -selection clipboard -t image/png"
 
-case "$(printf "selected area\\ncurrent window\\nfull screen\\nselected area (copy)\\ncurrent window (copy)\\nfull screen (copy)" | dmenu -i -c -l 6 -p "Screenshot area?")" in
-    "selected area") maim -u -s img-sel-"${output}" ;;
-    "current window") maim -u -B -q -d 0.2 -i "$(xdotool getactivewindow)" img-win-"${output}" ;;
-    "full screen") maim -u -q -d 0.2 img-full-"${output}" ;;
-    "selected area (copy)") maim -u -s | ${xclip_cmd} ;;
-    "current window (copy)") maim -u -B -q -d 0.2 -i "$(xdotool getactivewindow)" | ${xclip_cmd} ;;
-    "full screen (copy)") maim -u -q -d 0.2 | ${xclip_cmd} ;;
+case "$(printf "Selected area\\nCurrent window\\nFull screen\\nSelected area (copy)\\nCurrent window (copy)\\nFull screen (copy)" | dmenu -i -c -l 6 -p "Screenshot area?")" in
+    "Selected area") maim -u -s img-sel-"${output}" ;;
+    "Current window") maim -u -B -q -d 0.2 -i "$(xdotool getactivewindow)" img-win-"${output}" ;;
+    "Full screen") maim -u -q -d 0.2 img-full-"${output}" ;;
+    "Selected area (copy)") maim -u -s | ${xclip_cmd} ;;
+    "Current window (copy)") maim -u -B -q -d 0.2 -i "$(xdotool getactivewindow)" | ${xclip_cmd} ;;
+    "Full screen (copy)") maim -u -q -d 0.2 | ${xclip_cmd} ;;
 esac

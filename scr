@@ -1,0 +1,13 @@
+#!/bin/sh
+
+output="$(date '+%y%m%d%H%M%S').png"
+xclip_cmd="xclip -selection clipboard -t image/png"
+
+case "$(printf "selected area\\ncurrent window\\nfull screen\\nselected area (copy)\\ncurrent window (copy)\\nfull screen (copy)" | dmenu -i -c -l 6 -p "Screenshot area?")" in
+    "selected area") maim -u -s img-sel-"${output}" ;;
+    "current window") maim -u -B -q -d 0.2 -i "$(xdotool getactivewindow)" img-win-"${output}" ;;
+    "full screen") maim -u -q -d 0.2 img-full-"${output}" ;;
+    "selected area (copy)") maim -u -s | ${xclip_cmd} ;;
+    "current window (copy)") maim -u -B -q -d 0.2 -i "$(xdotool getactivewindow)" | ${xclip_cmd} ;;
+    "full screen (copy)") maim -u -q -d 0.2 | ${xclip_cmd} ;;
+esac

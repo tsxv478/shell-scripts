@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ $DISPLAY ]; then
+	host=$(grep "^Host" $HOME/.ssh/config | cut -d ' ' -f 2 | dmenu -i -c -l 10 -p "SSH to:")
+
+	[ "$host" ] || exit 0
+
+	setsid -f $TERMINAL -e ssh $host -t "tmux new -A"
+else
+	host=$(grep "^Host" $HOME/.ssh/config | cut -d ' ' -f 2 | fzf -e --reverse --prompt "SSH to: ")
+
+	[ "$host" ] || exit 0
+
+	ssh $host -t "tmux new -A"
+fi

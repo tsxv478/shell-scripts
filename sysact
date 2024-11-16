@@ -9,7 +9,7 @@ action="$(printf "Screen off\nLock\nSleep\nReboot\nShutdown" | dmenu -i -c -l 5 
 
 case "$action" in
 	"Screen off") xset dpms force off ;;
-	"Lock") xset dpms force off && slock ;;
+	"Lock") xset dpms force off ; slock ;;
 	"Sleep") slock $ctl suspend -i ;;
 	"Reboot") $ctl reboot -i ;;
 	"Shutdown") $ctl poweroff -i ;;

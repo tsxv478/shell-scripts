@@ -5,11 +5,11 @@ if [ $DISPLAY ]; then
 
 	[ "$host" ] || exit 0
 
-	setsid -f $TERMINAL -e ssh $host -t "tmux new -A"
+	setsid -f $TERMINAL -e ssh $host -t "tmux -u new -A"
 else
 	host=$(grep "^Host" $HOME/.ssh/config | cut -d ' ' -f 2 | fzf -e --reverse --prompt "SSH to: ")
 
 	[ "$host" ] || exit 0
 
-	ssh $host -t "tmux new -A"
+	ssh $host -t "tmux -u new -A"
 fi

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ $DISPLAY ]; then
+if [ $DISPLAY ] && command -v dmenu >/dev/null; then
 	host=$(grep "^Host" $HOME/.ssh/config | cut -d ' ' -f 2 | dmenu -i -c -l 10 -p "SSH to:")
 
 	[ "$host" ] || exit 0

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+maim -u -s /tmp/qr.png && zbarimg -S test-inverted -q --raw /tmp/qr.png | tr -d '\n' | xclip -selection clipboard && notify-send "QR Code" "Contents copied to clipboard"
